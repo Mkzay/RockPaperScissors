@@ -33,7 +33,13 @@ const Mechanism = () => {
       return "User";
     }
 
-    return "Computer";
+    if (
+      (userChoice === "rock" && computerChoice === "paper") ||
+      (userChoice === "scissors" && computerChoice === "rock") ||
+      (userChoice === "paper" && computerChoice === "scissors")
+    ) {
+      return "Computer";
+    }
   };
 
   const handleUserChoice = (choice) => {
@@ -74,7 +80,7 @@ const Mechanism = () => {
             <h2 className="text-white font-bold text-6xl">
               {result === "User"
                 ? "YOU WIN"
-                : result === "computer"
+                : result === "Computer"
                 ? "YOU LOSE"
                 : "IT'S A TIE"}
             </h2>
