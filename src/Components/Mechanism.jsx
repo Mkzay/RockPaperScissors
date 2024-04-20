@@ -78,7 +78,7 @@ const Mechanism = ({ setScore }) => {
   }, [userChoice]);
 
   return (
-    <div className="flex flex-col items-center justify-center mt-36 w-full h-full md:mt-0 lg:mt-12">
+    <div className="flex flex-col items-center justify-center mt-36 w-full h-full md:mt-0 lg:mt-24">
       {userChoice ? (
         <>
           <div className="flex items-center justify-between gap-20 text-white font-semibold tracking-widest mt-20 mb-16">
