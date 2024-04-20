@@ -3,8 +3,11 @@ import { useState } from "react";
 const Rules = () => {
   const [openRules, setOpenRules] = useState(false);
   const handleOpenRules = () => {
+    clickSound.play();
     setOpenRules(!openRules);
   };
+
+  const clickSound = new Audio("/sounds/click.wav");
 
   return (
     <div className="flex items-center justify-center mt-10 md:mt-0">

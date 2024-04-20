@@ -1,4 +1,4 @@
-const Score = () => {
+const Score = ({ score }) => {
   return (
     <div className="flex items-center justify-between flex-row absolute m-10 top-0 w-11/12 py-3.5 px-3 border-[3px] border-headerOutline rounded-md md:w-10/12 lg:w-6/12 md:py-4 lg:py-3 lg:px-5 ">
       <ul className="flex flex-col text-2xl text-white font-semibold">
@@ -10,7 +10,7 @@ const Score = () => {
         <li className="text-sm text-scoreText font-bold tracking-wider">
           SCORE
         </li>
-        <li className="text-5xl text-darkText font-bold">0</li>
+        <li className="text-5xl text-darkText font-bold">{score}</li>
       </ul>
     </div>
   );

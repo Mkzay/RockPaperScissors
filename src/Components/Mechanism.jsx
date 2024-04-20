@@ -1,11 +1,23 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 
-const Mechanism = () => {
+const Mechanism = ({ setScore }) => {
   const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
 
   const choices = ["rock", "paper", "scissors"];
+  const clickSound = new Audio("/sounds/click.wav");
+  const winSound = new Audio("/sounds/win.wav");
+  const loseSound = new Audio("/sounds/lose.wav");
+  const tieSound = new Audio("/sounds/tie.wav");
+
+  useEffect(() => {
+    clickSound.load();
+    winSound.load();
+    loseSound.load();
+    tieSound.load();
+  }, []);
 
   const choiceImages = {
     paper: "/icon-paper.svg",
@@ -43,6 +55,7 @@ const Mechanism = () => {
   };
 
   const handleUserChoice = (choice) => {
+    clickSound.play();
     setUserChoice(choice);
   };
 
@@ -51,7 +64,17 @@ const Mechanism = () => {
       const computerChoice = generateComputerChoice();
       const result = determineWinner(userChoice, computerChoice);
       setResult(result);
+      if (result === "User") {
+        winSound.play();
+        setScore((prevScore) => prevScore + 1);
+      } else if (result === "Computer") {
+        loseSound.play();
+        setScore((prevScore) => prevScore - 1);
+      } else {
+        tieSound.play();
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userChoice]);
 
   return (
@@ -86,7 +109,12 @@ const Mechanism = () => {
             </h2>
             <button
               className="bg-white rounded-md py-3 px-20 font-semibold text-base tracking-wider text-darkText"
-              onClick={() => setUserChoice(null)}
+              onClick={() => {
+                if (clickSound.readyState >= 3) {
+                  clickSound.play();
+                }
+                setUserChoice(null);
+              }}
             >
               PLAY AGAIN
             </button>
